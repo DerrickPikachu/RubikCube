@@ -69,14 +69,55 @@ void Cube::draw() const noexcept {
   //       You can copy-paste sample code above, but you must change its parameters to render correctly.
 
   // Blue, bottom
+  glBegin(GL_TRIANGLE_STRIP);
+  glColor3f(0.0f, 0.0f, 1.0f);
+  glNormal3f(0.1f, 0.0f, 0.0f);
 
+  glVertex3f(1.0f, 1.0f, -1.0f);
+  glVertex3f(1.0f, 1.0f, 1.0f);
+  glVertex3f(1.0f, -1.0f, -1.0f);
+  glVertex3f(1.0f, -1.0f, 1.0f);
+  glEnd();
   // Red, right
+  glBegin(GL_TRIANGLE_STRIP);
+  glColor3f(1.0f, 0.0f, 0.0f);
+  glNormal3f(0.0f, 0.0f, 1.0f);
 
+  glVertex3f(-1.0f, 1.0f, 1.0f);
+  glVertex3f(-1.0f, -1.0f, 1.0f);
+  glVertex3f(1.0f, 1.0f, 1.0f);
+  glVertex3f(1.0f, -1.0f, 1.0f);
+  glEnd();
   // Orange, left
+  glBegin(GL_TRIANGLE_STRIP);
+  glColor3f(1.0f, 0.5f, 0.0f);
+  glNormal3f(0.0f, 0.0f, -1.0f);
 
+  glVertex3f(-1.0f, 1.0f, -1.0f);
+  glVertex3f(-1.0f, -1.0f, -1.0f);
+  glVertex3f(1.0f, 1.0f, -1.0f);
+  glVertex3f(1.0f, -1.0f, -1.0f);
+  glEnd();
   // Yellow, front
+  glBegin(GL_TRIANGLE_STRIP);
+  glColor3f(1.0f, 1.0f, 0.0f);
+  glNormal3f(-1.0f, 0.0f, 0.0f);
 
+  glVertex3f(-1.0f, 1.0f, -1.0f);
+  glVertex3f(-1.0f, 1.0f, 1.0f);
+  glVertex3f(-1.0f, -1.0f, -1.0f);
+  glVertex3f(-1.0f, -1.0f, 1.0f);
+  glEnd();
   // White, back
+  glBegin(GL_TRIANGLE_STRIP);
+  glColor3f(1.0f, 1.0f, 1.0f);
+  glNormal3f(0.0f, -1.0f, 0.0f);
+
+  glVertex3f(-1.0f, -1.0f, -1.0f);
+  glVertex3f(-1.0f, -1.0f, 1.0f);
+  glVertex3f(1.0f, -1.0f, -1.0f);
+  glVertex3f(1.0f, -1.0f, 1.0f);
+  glEnd();
 }
 
 void Cube::rotate(Axis axis) { rotation_direction = static_cast<int>(axis); }

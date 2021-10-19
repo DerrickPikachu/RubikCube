@@ -106,6 +106,9 @@ int main() {
     //       glPushMatrix/glPopMatrix   (https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glPushMatrix.xml)
     // Note:
     //       You can implement this section using less than 10 lines of code.
+    for (const auto& cube : cubes) {
+      cube->draw();
+    }
 #ifdef __APPLE__
     // Some platform need explicit glFlush
     glFlush();
