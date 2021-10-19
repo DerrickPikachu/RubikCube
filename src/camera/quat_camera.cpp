@@ -1,4 +1,10 @@
 #include "camera/quat_camera.h"
+#include <glm/gtx/quaternion.hpp>
+#include <glm/glm.hpp>
+#include <glm/common.hpp>
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
 
 namespace graphics::camera {
 void QuaternionCamera::move(GLFWwindow* window) {
@@ -22,6 +28,7 @@ void QuaternionCamera::move(GLFWwindow* window) {
     lastx = xpos;
     lasty = ypos;
     if (dx != 0 || dy != 0) {
+      // x control left and right, y control up and down
       ismoved = true;
       glm::quat rx(glm::angleAxis(dx, glm::vec3(0, -1, 0)));
       glm::quat ry(glm::angleAxis(dy, glm::vec3(1, 0, 0)));
@@ -60,6 +67,10 @@ void QuaternionCamera::updateView() {
   //       glm::lookAt (https://glm.g-truc.net/0.9.9/api/a00247.html#gaa64aa951a0e99136bba9008d2b59c78e)
   // Note: You should not use gluLookAt
   viewMatrix = glm::identity<glm::mat4>();
+  // glm::mat4 rotationMatrix = glm::toMat4(rotation);
+  front = rotation * original_front;
+  up = rotation * original_up;
+  viewMatrix = glm::lookAt(position, position + front, up);
 }
 
 void QuaternionCamera::updateProjection(float aspectRatio) {
@@ -71,5 +82,6 @@ void QuaternionCamera::updateProjection(float aspectRatio) {
   //       glm::perspective (https://glm.g-truc.net/0.9.9/api/a00243.html#ga747c8cf99458663dd7ad1bb3a2f07787)
   // Note: You should not use gluPerspective
   projectionMatrix = glm::identity<glm::mat4>();
+  projectionMatrix = glm::perspective(FOV, 4.0f / 3.0f, zNear, zFar);
 }
 }  // namespace graphics::camera

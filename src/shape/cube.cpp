@@ -91,7 +91,7 @@ void Cube::draw() const noexcept {
   // Orange, left
   glBegin(GL_TRIANGLE_STRIP);
   glColor3f(1.0f, 0.5f, 0.0f);
-  glNormal3f(0.0f, 0.0f, -1.0f);
+  glNormal3f(0.0f, 0.0f, 1.0f);
 
   glVertex3f(-1.0f, 1.0f, -1.0f);
   glVertex3f(-1.0f, -1.0f, -1.0f);
@@ -100,8 +100,8 @@ void Cube::draw() const noexcept {
   glEnd();
   // Yellow, front
   glBegin(GL_TRIANGLE_STRIP);
-  glColor3f(1.0f, 1.0f, 0.0f);
-  glNormal3f(-1.0f, 0.0f, 0.0f);
+  glColor3f(1.0f, 0.0f, 0.5f);
+  glNormal3f(1.0f, 0.0f, 0.0f);
 
   glVertex3f(-1.0f, 1.0f, -1.0f);
   glVertex3f(-1.0f, 1.0f, 1.0f);
@@ -111,7 +111,7 @@ void Cube::draw() const noexcept {
   // White, back
   glBegin(GL_TRIANGLE_STRIP);
   glColor3f(1.0f, 1.0f, 1.0f);
-  glNormal3f(0.0f, -1.0f, 0.0f);
+  glNormal3f(0.0f, 1.0f, 0.0f);
 
   glVertex3f(-1.0f, -1.0f, -1.0f);
   glVertex3f(-1.0f, -1.0f, 1.0f);
