@@ -107,6 +107,9 @@ int main() {
     // Note:
     //       You can implement this section using less than 10 lines of code.
     for (const auto& cube : cubes) {
+      glMatrixMode(GL_MODELVIEW);
+      glLoadMatrixf(camera.getViewMatrix());
+      cube->setupModel();
       cube->draw();
     }
 #ifdef __APPLE__

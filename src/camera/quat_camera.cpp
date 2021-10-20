@@ -70,6 +70,7 @@ void QuaternionCamera::updateView() {
   // glm::mat4 rotationMatrix = glm::toMat4(rotation);
   front = rotation * original_front;
   up = rotation * original_up;
+  right = glm::cross(front, up);
   viewMatrix = glm::lookAt(position, position + front, up);
 }
 

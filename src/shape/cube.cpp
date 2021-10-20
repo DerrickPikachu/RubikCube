@@ -41,6 +41,9 @@ void Cube::setupModel() noexcept {
   //       2. How to access float* pointer of glm::mat4 matrix?
   //           -> const float * ptr = glm::value_ptr(matrix)
   //       You can implement this section using less than 5 lines of code.
+  glm::mat4 rotationMatrix = glm::mat4_cast(rotation);
+  glm::mat4 modelMatrix = translation * rotationMatrix;
+  glMultMatrixf(glm::value_ptr(modelMatrix));
 }
 
 void Cube::draw() const noexcept {
@@ -100,7 +103,7 @@ void Cube::draw() const noexcept {
   glEnd();
   // Yellow, front
   glBegin(GL_TRIANGLE_STRIP);
-  glColor3f(1.0f, 0.0f, 0.5f);
+  glColor3f(1.0f, 1.0f, 0.0f);
   glNormal3f(-1.0f, 0.0f, 0.0f);
 
   glVertex3f(-1.0f, -1.0f, -1.0f);
