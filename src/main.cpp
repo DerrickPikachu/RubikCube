@@ -1,6 +1,8 @@
 #include <algorithm>
 #include <memory>
 #include <vector>
+#include <iostream>
+#include <stdio.h>
 
 #include <GLFW/glfw3.h>
 #define GLAD_GL_IMPLEMENTATION
@@ -16,6 +18,22 @@
 namespace {
 std::vector<std::unique_ptr<graphics::shape::Cube>> cubes;
 }  // namespace
+
+void rotateLayer(graphics::shape::Axis& axis, int layerPosition) {
+  using Axis = graphics::shape::Axis;
+  for (auto& cube : cubes) {
+    if (cube->getPosition(axis) == layerPosition) {
+      cube->rotate(axis);
+    }
+  }
+  std::cout << std::endl;
+}
+
+void rotateHoleCube(const graphics::shape::Axis& axis) {
+  for (auto& cube : cubes) {
+    cube->rotate(axis);
+  }
+}
 
 void keyCallback(GLFWwindow* window, int key, int, int action, int) {
   // There are three actions: press, release, hold
@@ -41,7 +59,56 @@ void keyCallback(GLFWwindow* window, int key, int, int action, int) {
   // Note:
   //       You should finish your cube rendering first.
   //       Otherwise you will spend a lot of time debugging this with a black screen.
+  Axis axis;
   switch (key) {
+    case GLFW_KEY_1:
+      axis = Axis::X;
+      rotateLayer(axis, 1);
+      break;
+    case GLFW_KEY_2:
+      axis = Axis::X;
+      rotateLayer(axis, 0);
+      break;
+    case GLFW_KEY_3:
+      axis = Axis::X;
+      rotateLayer(axis, -1);
+      break;
+    case GLFW_KEY_4:
+      axis = Axis::Y;
+      rotateLayer(axis, 1);
+      break;
+    case GLFW_KEY_5:
+      axis = Axis::Y;
+      rotateLayer(axis, 0);
+      break;
+    case GLFW_KEY_6:
+      axis = Axis::Y;
+      rotateLayer(axis, -1);
+      break;
+    case GLFW_KEY_7:
+      axis = Axis::Z;
+      rotateLayer(axis, 1);
+      break;
+    case GLFW_KEY_8:
+      axis = Axis::Z;
+      rotateLayer(axis, 0);
+      break;
+    case GLFW_KEY_9:
+      axis = Axis::Z;
+      rotateLayer(axis, -1);
+      break;
+    case GLFW_KEY_Z:
+      axis = Axis::Z;
+      rotateHoleCube(axis);
+      break;
+    case GLFW_KEY_X:
+      axis = Axis::X;
+      rotateHoleCube(axis);
+      break;
+    case GLFW_KEY_Y:
+      axis = Axis::Y;
+      rotateHoleCube(axis);
+      break;
     default:
       break;
   }

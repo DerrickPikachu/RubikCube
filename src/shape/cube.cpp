@@ -7,7 +7,7 @@
 
 namespace graphics::shape {
 // TODO (optional): If your cube rotates very slow or fast, you can change rotation_speed.
-int Cube::rotation_speed = 60;
+int Cube::rotation_speed = 20;
 
 glm::quat Cube::base_rotation[3] = {glm::angleAxis(utils::PI_2<float>() / rotation_speed, glm::vec3(1, 0, 0)),
                                     glm::angleAxis(utils::PI_2<float>() / rotation_speed, glm::vec3(0, 1, 0)),
@@ -42,6 +42,8 @@ void Cube::setupModel() noexcept {
   //           -> const float * ptr = glm::value_ptr(matrix)
   //       You can implement this section using less than 5 lines of code.
   glm::mat4 rotationMatrix = glm::mat4_cast(rotation);
+  glm::vec3 targetPosition = rotation * position * scale;
+  translation = glm::translate(glm::identity<glm::mat4>(), targetPosition);
   glm::mat4 modelMatrix = translation * rotationMatrix;
   glMultMatrixf(glm::value_ptr(modelMatrix));
 }
