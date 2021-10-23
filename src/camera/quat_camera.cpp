@@ -83,6 +83,6 @@ void QuaternionCamera::updateProjection(float aspectRatio) {
   //       glm::perspective (https://glm.g-truc.net/0.9.9/api/a00243.html#ga747c8cf99458663dd7ad1bb3a2f07787)
   // Note: You should not use gluPerspective
   projectionMatrix = glm::identity<glm::mat4>();
-  projectionMatrix = glm::perspective(FOV, 4.0f / 3.0f, zNear, zFar);
+  projectionMatrix = glm::perspective(FOV, 5.0f / 3.0f, zNear, zFar);
 }
 }  // namespace graphics::camera
